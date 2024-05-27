@@ -1,6 +1,8 @@
 import { Link, Form } from "react-router-dom";
 import customFetch from "../utils/customFetch";
 import { useQuery } from "@tanstack/react-query";
+import imgDefault from "../assets/default.jpeg";
+import isValidUrl from "../utils/isValidUrl";
 
 const contactQuery = {
   queryKey: ["contact"],
@@ -43,7 +45,7 @@ const Dashboard = () => {
               <th scope="row">{index + 1}</th>
               <td>
                 <img
-                  src={item.photo}
+                  src={isValidUrl(item.photo) ? item.photo : imgDefault}
                   alt="Girl in a jacket"
                   width="50"
                   height="50"
@@ -53,21 +55,27 @@ const Dashboard = () => {
               <td>{item.firstName}</td>
               <td>{item.lastName}</td>
               <td>{item.age}</td>
-              <td>
-                <Link
-                  to={`/sa-contact/edit-contact/${item.id}`}
-                  className="btn btn-warning btn-sm mr-2"
-                >
-                  Edit
-                </Link>
-                <Form
-                  method="post"
-                  action={`/sa-contact/delete-contact/${item.id}`}
-                >
-                  <button type="submit" className="btn btn-danger btn-sm">
-                    Delete
-                  </button>
-                </Form>
+              <td width="12%">
+                <div className="row">
+                  <div className="col">
+                    <Link
+                      to={`/sa-contact/edit-contact/${item.id}`}
+                      className="btn btn-warning btn-sm mr-2"
+                    >
+                      Edit
+                    </Link>
+                  </div>
+                  <div className="col">
+                    <Form
+                      method="post"
+                      action={`/sa-contact/delete-contact/${item.id}`}
+                    >
+                      <button type="submit" className="btn btn-danger btn-sm">
+                        Delete
+                      </button>
+                    </Form>
+                  </div>
+                </div>
               </td>
             </tr>
           ))}

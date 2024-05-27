@@ -76,6 +76,10 @@ const EditContact = () => {
             defaultValue={data.data.age}
           />
         </div>
+        <div className="mb-3">
+          <label className="form-label">Photo</label>
+          <input type="file" className="form-control" />
+        </div>
         <SubmitBtn />
       </Form>
     </div>

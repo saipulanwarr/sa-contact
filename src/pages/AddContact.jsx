@@ -50,6 +50,10 @@ const AddContact = () => {
             name="age"
           />
         </div>
+        <div className="mb-3">
+          <label className="form-label">Photo</label>
+          <input type="file" className="form-control" name="photo" />
+        </div>
         <SubmitBtn />
       </Form>
     </div>
